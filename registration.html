@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        label {
+            display: center;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .error{
+            color: red;
+        }
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+          }
+          
+          form {
+            width: 70%;
+          }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+<div  class="form-container">
+    <form id = 'registrationForm' action="#" method="post"> 
+        <label for="name"><b>Name</b>:</label>
+        <input type="text" id="name" name="name" required>
+        <span id="nameError" class="error"></span><br>
+
+        <label for="password"><b>Password:</b></label>
+        <input type="password" id="password" name="password" required>
+        <span id="passwordError" class="error"></span><br>
+
+        <label for="email"><b>E-mail ID:</b></label>
+        <input type="text" id="email" name="email" required>
+        <span id="emailError" class="error"></span><br>
+
+        <label for="phone"><b>Phone Number:</b></label>
+        <input type="number" id="phone" name="phone" required>
+        <span id="phoneError" class="error"></span><br>
+
+        <label for="sex"><b>Sex:</b></label>
+        <input type="radio" id="male" name="sex" value="male" require d>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="sex" value="female" required>
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="sex" value="other" required>
+        <label for="other">Other</label><br><br>
+
+        <label for="dob"><b>Date of Birth:</b></label>
+        <input type="date" id="date"><br><br>
+
+        <label><b>Languages Known:</b></label>
+        <input type="checkbox" id="english" name="languages[]" value="English">
+        <label for="english">English</label>
+        <input type="checkbox" id="telugu" name="languages[]" value="Telugu">
+        <label for="telugu">Telugu</label>
+        <input type="checkbox" id="hindi" name="languages[]" value="Hindi">
+        <label for="hindi">Hindi</label>
+        <input type="checkbox" id="tamil" name="languages[]" value="Tamil">
+        <label for="tamil">Tamil</label><br><br>
+
+        <label for="address"><b>Address:</b></label>
+        <textarea id="address" name="address" rows="4" required></textarea>
+
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</div>
+    <script>
+        const form = document.getElementById('registrationForm');
+        const nameField = document.getElementById('name');
+        const passwordField = document.getElementById('password');
+        const emailField = document.getElementById('email');
+        const phoneField = document.getElementById('phone');
+        const nameError = document.getElementById('nameError');
+        const passwordError = document.getElementById('passwordError');
+        const emailError = document.getElementById('emailError');
+        const phoneError = document.getElementById('phoneError');
+
+        form.addEventListener('submit', function(event) {
+            let isValid = true;
+            nameError.textContent = '';
+            passwordError.textContent = '';
+            emailError.textContent = '';
+            phoneError.textContent = '';
+
+            if (!/^[a-zA-Z]+$/.test(nameField.value) || nameField.value.length < 6) {
+                nameError.textContent = '**Name should contain only alphabets and be at least 6 characters long.';
+                isValid = false;
+            }
+
+            if (passwordField.value.length < 6) {
+                passwordError.textContent = '**Password should be at least 6 characters long.';
+                isValid = false;
+            }
+
+            if (!/^\d{10}$/.test(phoneField.value)) {
+                phoneError.textContent = '**Phone number should contain 10 digits only.';
+                isValid = false;
+            }
+
+            if (!/\S+@\S+\.\S+/.test(emailField.value)) {
+                emailError.textContent = '**Invalid email format.';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

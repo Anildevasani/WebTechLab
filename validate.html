@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form id="registrationForm" action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <span id="nameError" class="error"></span>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <span id="passwordError" class="error"></span>
+
+        <label for="email">E-mail ID:</label>
+        <input type="text" id="email" name="email" required>
+        <span id="emailError" class="error"></span>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required>
+        <span id="phoneError" class="error"></span>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const nameField = document.getElementById('name');
+        const passwordField = document.getElementById('password');
+        const emailField = document.getElementById('email');
+        const phoneField = document.getElementById('phone');
+        const nameError = document.getElementById('nameError');
+        const passwordError = document.getElementById('passwordError');
+        const emailError = document.getElementById('emailError');
+        const phoneError = document.getElementById('phoneError');
+
+        form.addEventListener('submit', function(event) {
+            let isValid = true;
+            nameError.textContent = '';
+            passwordError.textContent = '';
+            emailError.textContent = '';
+            phoneError.textContent = '';
+
+            if (!/^[a-zA-Z]+$/.test(nameField.value) || nameField.value.length < 6) {
+                nameError.textContent = 'Name should contain only alphabets and be at least 6 characters long.';
+                isValid = false;
+            }
+
+            if (passwordField.value.length < 6) {
+                passwordError.textContent = 'Password should be at least 6 characters long.';
+                isValid = false;
+            }
+
+            if (!/^\d{10}$/.test(phoneField.value)) {
+                phoneError.textContent = 'Phone number should contain 10 digits only.';
+                isValid = false;
+            }
+
+            if (!/\S+@\S+\.\S+/.test(emailField.value)) {
+                emailError.textContent = 'Invalid email format.';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        });
+    </script>
+</body>
+</html>

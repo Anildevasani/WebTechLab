@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login page</title>
+    <style>
+        body{
+            text-align: center;
+            padding-top: 150px;
+            padding-bottom: 50px;
+            border: 2px black;
+        }
+    </style>
+    <script>
+        function validateLogin() {
+            var email = document.getElementById('ename').value;
+            var password = document.getElementById('pwd').value;
+
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var passwordPattern = /^.{6,}$/;
+
+            if (!emailPattern.test(email)) {
+                alert('Invalid email format.');
+                return false; 
+            }
+
+            if (!passwordPattern.test(password)) {
+                alert('Password should be at least 6 characters long.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Login</h2>
+
+    <form onsubmit="return validateLogin()">
+        <label for="ename"><b>Email ID:</b></label>
+        <input type="text" id="ename" name="ename"><br><br>
+        <label for="pwd"><b>Password:</b></label>
+        <input type="password" id="pwd" name="pwd"><br><br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+
+</body>
+</html>
