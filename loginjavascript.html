@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: green;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <div id="nameError" class="error"></div>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <div id="passwordError" class="error"></div>
+
+        <label for="email">E-mail ID:</label>
+        <input type="email" id="email" name="email" required>
+        <div id="emailError" class="error"></div>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <div id="phoneError" class="error"></div>
+
+        <button type="submit">Login</button>
+        <div id="loginMessage" class="message"></div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        let valid = true;
+        let nameError = '';
+        let passwordError = '';
+        let emailError = '';
+        let phoneError = '';
+
+        // Name validation
+        const name = document.getElementById('name').value;
+        if (!/^[A-Za-z]{6,}$/.test(name)) {
+            nameError = 'Name should contain only alphabets and be at least 6 characters long.';
+            valid = false;
+        }
+        document.getElementById('nameError').innerText = nameError;
+
+        // Password validation
+        const password = document.getElementById('password').value;
+        if (password.length < 6) {
+            passwordError = 'Password should be at least 6 characters long.';
+            valid = false;
+        }
+        document.getElementById('passwordError').innerText = passwordError;
+
+        // Email validation
+        const email = document.getElementById('email').value;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            emailError = 'Invalid email format.';
+            valid = false;
+        }
+        document.getElementById('emailError').innerText = emailError;
+
+        // Phone number validation
+        const phone = document.getElementById('phone').value;
+        const phonePattern = /^[0-9]{10}$/;
+        if (!phonePattern.test(phone)) {
+            phoneError = 'Phone number should contain 10 digits only.';
+            valid = false;
+        }
+        document.getElementById('phoneError').innerText = phoneError;
+
+        // Display success message if valid
+        if (valid) {
+            document.getElementById('loginMessage').innerText = 'Successfully logged in!';
+        } else {
+            document.getElementById('loginMessage').innerText = '';
+        }
+    });
+</script>
+
+</body>
+</html>
