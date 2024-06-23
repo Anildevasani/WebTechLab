@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="registrationForm" onsubmit="return validateForm()">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <label for="email">E-mail ID:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br><br>
+
+    <label>Sex:</label><br>
+    <input type="radio" id="male" name="sex" value="male" required>
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="sex" value="female">
+    <label for="female">Female</label><br><br>
+
+    <label for="dob">Date of Birth:</label><br>
+    <select id="day" name="day" required>
+        <option value="" disabled selected>Day</option>
+        <!-- Add options for days -->
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+    </select>
+    <select id="month" name="month" required>
+        <option value="" disabled selected>Month</option>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+    </select>
+    <select id="year" name="year" required>
+        <option value="" disabled selected>Year</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2015">2015</option>
+        <option value="2014">2014</option>
+        <option value="2013">2013</option>
+        <option value="2012">2012</option>
+    </select><br><br>
+
+    <label>Languages Known:</label><br>
+    <input type="checkbox" id="english" name="language[]" value="english">
+    <label for="english">English</label><br>
+    <input type="checkbox" id="telugu" name="language[]" value="telugu">
+    <label for="telugu">Telugu</label><br>
+    <input type="checkbox" id="hindi" name="language[]" value="hindi">
+    <label for="hindi">Hindi</label><br>
+    <input type="checkbox" id="tamil" name="language[]" value="tamil">
+    <label for="tamil">Tamil</label><br><br>
+
+    <label for="address">Address:</label><br>
+    <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+</form>
+
+<script>
+function validateForm() {
+    let valid = true;
+    let errors = [];
+
+    // Name validation
+    const name = document.getElementById("name").value;
+    if (name.trim() === "") {
+        errors.push("Name is required");
+        valid = false;
+    }
+
+    // Password validation
+    const password = document.getElementById("password").value;
+    if (password.trim() === "") {
+        errors.push("Password is required");
+        valid = false;
+    }
+
+    // Email validation
+    const email = document.getElementById("email").value;
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailPattern.test(email)) {
+        errors.push("Invalid email address");
+        valid = false;
+    }
+
+    // Phone number validation
+    const phone = document.getElementById("phone").value;
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(phone)) {
+        errors.push("Phone number must be 10 digits");
+        valid = false;
+    }
+
+    // Sex validation
+    const sex = document.querySelector('input[name="sex"]:checked');
+    if (!sex) {
+        errors.push("Sex is required");
+        valid = false;
+    }
+
+    // Date of Birth validation
+    const dobDay = document.getElementById("day").value;
+    const dobMonth = document.getElementById("month").value;
+    const dobYear = document.getElementById("year").value;
+    if (dobDay === "" || dobMonth === "" || dobYear === "") {
+        errors.push("Date of birth is required");
+        valid = false;
+    }
+
+    // Languages validation
+    const languages = document.querySelectorAll('input[name="language[]"]:checked');
+    if (languages.length === 0) {
+        errors.push("At least one language must be selected");
+        valid = false;
+    }
+
+    // Address validation
+    const address = document.getElementById("address").value;
+    if (address.trim() === "") {
+        errors.push("Address is required");
+        valid = false;
+    }
+
+    // Display errors or success message
+    if (!valid) {
+        alert("Please correct the following errors:\n" + errors.join("\n"));
+    } else {
+        alert("Successfully registered!");
+    }
+
+    return valid;
+}
+</script>
+
+</body>
+</html>
+
