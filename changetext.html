@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tasks</title>
+</head>
+<body>
+
+<h2 id="textToChange">Change me</h2>
+<button id="changeTextButton">Change Text</button>
+
+<br><br>
+
+<button id="clickCounterButton">Click Me</button>
+<p id="clickCountDisplay">Button clicked 0 times</p>
+
+<br><br>
+
+<h2>Check Range</h2>
+<label for="firstNumber">First Number:</label>
+<input type="number" id="firstNumber" name="firstNumber">
+<br>
+<label for="secondNumber">Second Number:</label>
+<input type="number" id="secondNumber" name="secondNumber">
+<br>
+<button id="checkRangeButton">Check Range</button>
+<p id="rangeResult"></p>
+
+<script>
+    // Task 1: Event Listener for Click Events (Display Click Count)
+    let clickCount = 0;
+    const clickCounterButton = document.getElementById("clickCounterButton");
+    const clickCountDisplay = document.getElementById("clickCountDisplay");
+
+    clickCounterButton.addEventListener("click", function() {
+        clickCount++;
+        clickCountDisplay.innerText = "Button clicked " + clickCount + " times";
+    });
+
+    // Task 2: Change Text on Button Click
+    const changeTextButton = document.getElementById("changeTextButton");
+    const textToChange = document.getElementById("textToChange");
+
+    changeTextButton.addEventListener("click", function() {
+        textToChange.innerText = "Hello World!";
+    });
+
+    // Task 3: Check Integer Values in Range
+    function isInRange(value) {
+        return value >= 50 && value <= 99;
+    }
+
+    const checkRangeButton = document.getElementById("checkRangeButton");
+    const rangeResult = document.getElementById("rangeResult");
+
+    checkRangeButton.addEventListener("click", function() {
+        const firstNumber = parseInt(document.getElementById("firstNumber").value);
+        const secondNumber = parseInt(document.getElementById("secondNumber").value);
+
+        if (isInRange(firstNumber) || isInRange(secondNumber)) {
+            rangeResult.innerText = "True: One of the numbers is in the range 50..99.";
+        } else {
+            rangeResult.innerText = "False: Neither of the numbers is in the range 50..99.";
+        }
+    });
+</script>
+
+</body>
+</html>
+
