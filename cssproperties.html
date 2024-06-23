@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Web Page</title>
+    <style>
+        /* Set a background image for the page */
+        body {
+            background-image: url('./JobZeelogo.png');
+            background-repeat: repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style for the headline */
+        .headline {
+            color: red;
+            font-size: 22px;
+            font-family: 'Arial', sans-serif;
+            text-decoration: underline;
+        }
+
+        /* Style for the container */
+        .container {
+            background-image: url('https://via.placeholder.com/300');
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid #000;
+        }
+
+        /* Different font styles */
+        .normal {
+            font-size: 16px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .large {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Styled Web Page Example</h1>
+
+    <p class="normal">This is normal text with Times New Roman font.</p>
+    <p class="italic">This is italic text.</p>
+    <p class="bold">This is bold text.</p>
+    <p class="large">This is large text.</p>
+
+    <div class="container">
+        <p>This container has a background image that does not repeat.</p>
+        <b>This is normal bold</b><br>
+        <b class="headline">This is headline style bold</b>
+    </div>
+
+</body>
+</html>
